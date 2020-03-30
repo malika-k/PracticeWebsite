@@ -1,16 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Greet from './components/Greet'
-import Welcome from './components/Welcome'
+import classes from './App.module.css';
+
+import Header from './components/Header/Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className='App-header'>
-        <Greet/>
-        <Welcome/>
-      </header>
+    <div className={classes.AppWrapper}>
+
+      <main className={classes.AppMain}>
+        <Header/>
+
+      </main>
     </div>
   );
 }
