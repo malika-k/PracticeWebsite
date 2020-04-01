@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './App.module.css';
 
 import Logo from '../elements/Logo/Logo';
+import SearchBar from '../components/SearchBar/SearchBar';
 
 class App extends Component {
 
