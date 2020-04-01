@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.module.css';
 
+import Logo from '../elements/Logo/Logo';
 
 class App extends Component {
 
@@ -21,6 +22,20 @@ class App extends Component {
     return (
       <div className={classes.AppWrapper}>
         <main className={classes.AppMain}>
+
+        <header className={classes.Header} >
+          <div  className={classes.LogoSize} >
+            <Logo clicked={this.tryAgainHandler} />
+          </div>
+            <SearchBar
+              value={this.state.searchBarInput}
+              onChangeHandler={this.searchBarHandler}
+              onClickHandler={this.fetchArtist}
+              error={this.state.error} />
+
+        </header>
+
+
         </main>
       </div>
     );
