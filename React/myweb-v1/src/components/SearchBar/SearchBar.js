@@ -1,26 +1,24 @@
 import React from 'react'
 
 import classes from './SearchBar.module.css';
-import InputField from '../../elements/InputField/InputField';
-import Button from '../../elements/Button/Button';
 
 const searchBar = (props) => {
     return(
-        <div className={classes.SearchBarWrapper}>
-            <InputField
-                type="text"
-                name="artist"
-                label="Artist"
+        <form className={classes.SearchBarWrapper}>
+            <input
+                type={props.type}
+                id= {props.name}
+                name={props.name}
                 placeholder="Enter an artist"
                 value={props.value}
-                handleChange={props.onChangeHandler}
-                error={props.error} />
-            <Button
+                onChange={props.onChangeHandler}
+                required />
+            <button
                 name="searchSubmit"
-                type="submit"
+                type="button"
                 position="onForm"
-                clicked={props.onClickHandler}>Set</Button>
-        </div>
+                onClick={props.onClickHandler}>Submit</button>
+        </form>
     );
 }
 

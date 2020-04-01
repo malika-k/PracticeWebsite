@@ -13,7 +13,8 @@ class App extends Component {
         events: [],
         fb: '',
         imdb: '',
-        picture: ''
+        picture: '',
+        eventcount: null
       },
       loading: false,
       error: false
@@ -35,7 +36,8 @@ class App extends Component {
           events: [],
           fb: '',
           imdb: '',
-          picture: ''
+          picture: '',
+          eventcount: null
         },
         error: false
       })
@@ -63,14 +65,15 @@ class App extends Component {
         events: [],
         fb: '',
         imdb: '',
-        picture: ''
+        picture: '',
+        eventcount: null
       },
       loading: true,
       error: false
     }, () => {
       // Executed as callback function
-      fetch(ARTIST_URL)
-        .then(res => res.json())
+      fetch(ARTIST_URL, {method:'GET'})
+        .then(res =>  res.json()  )
           .then(artistdata => {
           this.fetchAPI(EVENT_URL)
             .then(eventdata => {
@@ -78,15 +81,19 @@ class App extends Component {
               let output = [artistdata, eventdata];
               console.log(output);
 
+              let picture = artistdata["image_url"] ;
+
               // If city exists, update weather details
-              if(artistdata.cod === 200) {
+              if(artistdata.status === 200) {
+
                 this.setState({
                   artistDisplay: {
                     name: '',
                     events: [],
                     fb: '',
                     imdb: '',
-                    picture: ''
+                    picture: picture,
+                    eventcount: null
                   },
                   loading: false
                 });
@@ -126,18 +133,19 @@ class App extends Component {
       <div className={classes.AppWrapper}>
         <main className={classes.AppMain}>
 
-        <header className={classes.Header} >
-          <div  className={classes.LogoSize} >
-            <Logo clicked={this.tryAgainHandler} />
-          </div>
-            <SearchBar
-              value={this.state.searchBarInput}
-              onChangeHandler={this.searchBarHandler}
-              onClickHandler={this.fetchArtist}
-              error={this.state.error} />
+          <header className={classes.Header} >
+            <div  className={classes.LogoSize} >
+              <Logo clicked={this.tryAgainHandler} />
 
-        </header>
+              <SearchBar
+                value={this.state.searchBarInput}
+                onChangeHandler={this.searchBarHandler}
+                onClickHandler={this.fetchArtist}
+                error={this.state.error} />
+            </div>
 
+
+          </header>
 
         </main>
       </div>

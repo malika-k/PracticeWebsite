@@ -1,0 +1,40 @@
+.SearchBarWrapper {
+    position: absolute;
+    padding: 27px 40px;
+    display: inline-block;
+    width: 45%;
+}
+
+.SearchBarWrapper input {
+padding: 10px;
+font-size: 17px;
+border: 0px;
+float: left;
+width: 80%;
+    background-color: rgb(0,0,0,.4);
+text-transform: uppercase;
+color: rgb(255,255,255,0.9);
+}
+
+.SearchBarWrapper input:active,
+.SearchBarWrapper input:focus {
+    outline: none;
+}
+.SearchBarWrapper button {
+  position: absolute;
+ width: auto;
+ padding: 10px;
+ background: #2196F3;
+ color: white;
+ font-size: 17px;
+ border: 0px ;
+ border-left: none; /* Prevent double borders */
+ cursor: pointer;
+}
+.SearchBarWrapper button:hover {
+    cursor: pointer;
+}
+.SearchBarWrapper button:active,
+.SearchBarWrapper button:focus {
+    outline: none;
+}

@@ -23,8 +23,10 @@
 .Header {
     background-color: rgba(0,0,0,0.1);
     padding: 15px 30px;
+    display: block;
 }
 
 .LogoSize {
-  height: 60px;
+  display:inline-block;
+  height: 75px;
 }
