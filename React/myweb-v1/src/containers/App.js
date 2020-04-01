@@ -5,7 +5,7 @@ import Logo from '../elements/Logo/Logo';
 import SearchBar from '../components/SearchBar/SearchBar';
 
 class App extends Component {
-
+ 
   state = {
       searchBarInput: '',
       artistDisplay: {
