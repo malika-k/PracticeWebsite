@@ -99,7 +99,6 @@ class App extends Component {
             loading: false,
             error: true
           });
-          console.log(this.state);
         });
 
       /*
