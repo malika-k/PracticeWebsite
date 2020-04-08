@@ -3,10 +3,16 @@ import React from 'react'
 import classes from './SearchBar.module.css';
 
 const searchBar = (props) => {
+
+    function enterPressed(e) {
+      e.preventDefault();
+      props.onClickHandler();
+    }
+
+
     return(
-        <form className={classes.SearchBarWrapper}>
+        <form className={classes.SearchBarWrapper} onSubmit={enterPressed}>
             <input
-                type={props.type}
                 id= {props.name}
                 name={props.name}
                 placeholder="Enter an artist"

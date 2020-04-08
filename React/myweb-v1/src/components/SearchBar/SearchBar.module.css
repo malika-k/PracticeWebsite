@@ -1,8 +1,5 @@
 .SearchBarWrapper {
-    position: absolute;
-    padding: 27px 40px;
-    display: inline-block;
-    width: 45%;
+    width: 100%;
 }
 
 .SearchBarWrapper input {

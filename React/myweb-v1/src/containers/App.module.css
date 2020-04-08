@@ -4,8 +4,8 @@
 
 }
 .AppMain {
-    margin: 0;
-    background-image: linear-gradient(to bottom right, rgba(32,15,77), rgba(110,30,74));
+  margin: 0;
+  background-image: linear-gradient(to bottom right, rgba(32,15,77), rgba(110,30,74));
 
   /* Set rules to fill background */
   min-height: 100%;
@@ -19,14 +19,49 @@
   position: fixed;
   top: 0;
   left: 0;
+  min-width: 1024px;
 }
+
+.LeftView {
+
+    width: 70%;
+    height: 100%;
+}
+
 .Header {
     background-color: rgba(0,0,0,0.1);
-    padding: 15px 30px;
+    padding-top: 1%;
+    padding-left: 2%;
     display: block;
+    height:10%;
+}
+
+.flex {
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex > div {
+  float:left;
+  height: 100%;
+  display: inline-block;
+}
+
+.logo {
+  width: 25%;
+}
+
+.searchbar {
+  padding-left: 20px;
+  padding-top: 1%;
+  width: 60%;
 }
 
 .LogoSize {
   display:inline-block;
-  height: 75px;
+  height: auto;
+  width: auto;
+  max-height: 72px;
 }

@@ -3,9 +3,10 @@ import classes from './App.module.css';
 
 import Logo from '../elements/Logo/Logo';
 import SearchBar from '../components/SearchBar/SearchBar';
+import RightView from '../components/RightView/RightView';
 
 class App extends Component {
- 
+
   state = {
       searchBarInput: '',
       artistDisplay: {
@@ -71,7 +72,37 @@ class App extends Component {
       loading: true,
       error: false
     }, () => {
+
       // Executed as callback function
+
+      let artistcall = fetch(ARTIST_URL);
+      let eventcall = fetch(EVENT_URL);
+
+      Promise.all([artistcall,eventcall])
+        .then(responses => {
+          for (let response of responses) {
+            if (response.status !== 200){
+              throw response.status;
+            }
+          }
+          return responses;
+        })
+        .then(values => Promise.all(values.map(value => value.json() )))
+        .then(finalVals => {
+          let artistdata = finalVals[0];
+          let eventdata = finalVals[1];
+          console.log(finalVals);
+        })
+        .catch( err => {
+          console.log(err);
+          this.setState({
+            loading: false,
+            error: true
+          });
+          console.log(this.state);
+        });
+
+      /*
       fetch(ARTIST_URL, {method:'GET'})
         .then(res =>  res.json()  )
           .then(artistdata => {
@@ -124,6 +155,10 @@ class App extends Component {
             error: true
           });
         });
+
+        */
+
+
     });
   }
 
@@ -131,23 +166,29 @@ class App extends Component {
   render() {
     return (
       <div className={classes.AppWrapper}>
-        <main className={classes.AppMain}>
+        <div className={classes.AppMain}>
 
-          <header className={classes.Header} >
-            <div  className={classes.LogoSize} >
-              <Logo clicked={this.tryAgainHandler} />
-
-              <SearchBar
-                value={this.state.searchBarInput}
-                onChangeHandler={this.searchBarHandler}
-                onClickHandler={this.fetchArtist}
-                error={this.state.error} />
+          <div className={classes.LeftView}>
+            <div className={classes.Header} >
+              <div className={classes.flex}>
+                <div className={classes.logo}>
+                  <Logo clicked={this.tryAgainHandler} />
+                </div>
+                <div className={classes.searchbar}>
+                  <SearchBar
+                    value={this.state.searchBarInput}
+                    onChangeHandler={this.searchBarHandler}
+                    onClickHandler={this.fetchArtist}
+                    error={this.state.error} />
+                  </div>
+              </div>
             </div>
+          </div>
+
+          <RightView/>
+        </div>
 
 
-          </header>
-
-        </main>
       </div>
     );
   }
