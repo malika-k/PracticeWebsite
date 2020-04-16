@@ -13,7 +13,7 @@ class App extends Component {
         name: '',
         events: [],
         fb: '',
-        imdb: '',
+        mbid: '',
         picture: '',
         eventcount: null
       },
@@ -36,7 +36,7 @@ class App extends Component {
           name: '',
           events: [],
           fb: '',
-          imdb: '',
+          mbid: '',
           picture: '',
           eventcount: null
         },
@@ -65,7 +65,7 @@ class App extends Component {
         name: '',
         events: [],
         fb: '',
-        imdb: '',
+        mbid: '',
         picture: '',
         eventcount: null
       },
@@ -121,7 +121,7 @@ class App extends Component {
                     name: '',
                     events: [],
                     fb: '',
-                    imdb: '',
+                    mbid: '',
                     picture: picture,
                     eventcount: null
                   },
