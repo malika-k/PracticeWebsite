@@ -5,6 +5,8 @@ import Logo from '../elements/Logo/Logo';
 import SearchBar from '../components/SearchBar/SearchBar';
 import RightView from '../components/RightView/RightView';
 
+import {filterArtistData, filterEventData} from './Filter';
+
 class App extends Component {
 
   state = {
@@ -40,7 +42,8 @@ class App extends Component {
           picture: '',
           eventcount: null
         },
-        error: false
+        error: false,
+        loading: false
       })
     }
 
@@ -89,9 +92,23 @@ class App extends Component {
         })
         .then(values => Promise.all(values.map(value => value.json() )))
         .then(finalVals => {
-          let artistdata = finalVals[0];
+
+          let artistdata = filterArtistData(finalVals[0]);
           let eventdata = finalVals[1];
-          console.log(finalVals);
+
+          this.setState({
+            artistDisplay: {
+              name: artistdata.name,
+              events: eventdata,
+              fb: artistdata.fb,
+              mbid: artistdata.mbid,
+              picture: artistdata.picture,
+              eventcount: artistdata.eventcount
+            },
+            loading: false
+          });
+
+          console.log(this.state);
         })
         .catch( err => {
           console.log(err);
@@ -99,63 +116,8 @@ class App extends Component {
             loading: false,
             error: true
           });
+          console.log(this.state);
         });
-
-      /*
-      fetch(ARTIST_URL, {method:'GET'})
-        .then(res =>  res.json()  )
-          .then(artistdata => {
-          this.fetchAPI(EVENT_URL)
-            .then(eventdata => {
-              //filter both event and artist data
-              let output = [artistdata, eventdata];
-              console.log(output);
-
-              let picture = artistdata["image_url"] ;
-
-              // If city exists, update weather details
-              if(artistdata.status === 200) {
-
-                this.setState({
-                  artistDisplay: {
-                    name: '',
-                    events: [],
-                    fb: '',
-                    mbid: '',
-                    picture: picture,
-                    eventcount: null
-                  },
-                  loading: false
-                });
-              } else {
-                // If artist doesn't exist, throw error
-                throw artistdata.cod
-              }
-            })
-            .catch(err => {
-              console.log(err);
-              this.setState({
-                loading: false,
-                error: true
-              });
-            });
-        });
-
-
-      fetch(EVENT_URL)
-        .then(res => res.json())
-        .then(data => {
-
-        })
-        .catch(err => {
-          console.log(err);
-          this.setState({
-            loading: false,
-            error: true
-          });
-        });
-
-        */
 
 
     });
