@@ -4,6 +4,7 @@ import classes from './App.module.css';
 import Logo from '../elements/Logo/Logo';
 import SearchBar from '../components/SearchBar/SearchBar';
 import RightView from '../components/RightView/RightView';
+import Card from '../elements/Card/Card';
 
 import {filterArtistData, filterEventData} from './Filter';
 
@@ -125,6 +126,18 @@ class App extends Component {
 
 
   render() {
+
+    let cardContent = <div></div>
+    if (this.state.loading) {
+       cardContent = <h1> loading </h1 > ;
+     } else if (this.state.error) {
+       cardContent = <h1> error </h1 > ;
+     }
+     else {
+       cardContent = <img src={this.state.artistDisplay.picture} height="200"/>
+     }
+
+
     return (
       <div className={classes.AppWrapper}>
         <div className={classes.AppMain}>
@@ -141,12 +154,20 @@ class App extends Component {
                     onChangeHandler={this.searchBarHandler}
                     onClickHandler={this.fetchArtist}
                     error={this.state.error} />
-                  </div>
+                </div>
               </div>
             </div>
+
+            <Card>
+              {cardContent}
+            </Card>
           </div>
 
-          <RightView/>
+          <RightView>
+            <Card>
+
+            </Card>
+          </RightView>
         </div>
 
 

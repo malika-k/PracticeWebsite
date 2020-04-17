@@ -6,7 +6,7 @@ const RightView = (props) => {
 
 return(
   <div className={classes.RightView}>
-
+    {props.children}
   </div>
 );
 
