@@ -1,2 +1,3 @@
 # PracticeWebsite
-More practice building a basic website for the UB ACM WebDev Workshop
+Learning React by recreating TourTracker >> now TrackVibe
+using BandsinTown, MapBox, Spotify, and MusicBrainz API
